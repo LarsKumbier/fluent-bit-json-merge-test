@@ -1,0 +1,10 @@
+apiVersion: v1                                                                                                                                                                                                     
+kind: Pod                                                                                                                                                                                                          
+metadata:
+  name: talk-other-format
+spec:
+  containers:
+  - image: larskumbier/talk-other-format
+    imagePullPolicy: Always
+    name: talk-other-format
+    tty: true

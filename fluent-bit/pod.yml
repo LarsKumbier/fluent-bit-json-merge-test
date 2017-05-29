@@ -16,6 +16,14 @@ spec:
       readOnly: true
     - mountPath: /fluent-bit/etc/
       name: fluent-bit-config
+  - image: larskumbier/fluentd
+    name: fluentd
+    tty: true
+    ports:
+    - containerPort: 24224
+    volumeMounts:
+    - mountPath: /fluentd/etc/
+      name: fluentd-config
   volumes:
   ## General node information, kubernetes-logs, azure init, etc.
   - name: node-var-log
@@ -25,7 +33,9 @@ spec:
   - name: node-var-lib-docker
     hostPath:
       path: /mnt/sda1/var/lib/docker
-  ## ConfigMaps holding config files
   - name: fluent-bit-config
     configMap:
       name: fluent-bit
+  - name: fluentd-config
+    configMap:
+      name: fluentd
